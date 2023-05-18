@@ -1,0 +1,57 @@
+{% extends 'log.html.twig' %}
+
+{% block title %}Utilisateur index{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <h2 class="text-center mt-5 mb-3">Symfony utilisateur Manager</h2>
+        <div class="card">
+            <div class="card-header">
+                <a class="btn btn-outline-primary" href="{{ path('app_utilisateur_new') }}"> 
+                    Create New utilisateur 
+                </a>
+            </div>
+            <div class="card-body">
+                <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nom</th>
+                <th>Prenom</th>
+                <th>Address</th>
+                <th>Email</th>
+                <th>Username</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for utilisateur in utilisateurs %}
+            <tr>
+                <td>{{ utilisateur.id }}</td>
+                <td>{{ utilisateur.nom }}</td>
+                <td>{{ utilisateur.prenom }}</td>
+                <td>{{ utilisateur.address }}</td>
+                <td>{{ utilisateur.email }}</td>
+                <td>{{ utilisateur.username }}</td>
+                <td>
+                       <a
+                                    class="btn btn-outline-info"
+                                    href="{{ path('app_utilisateur_show', {'id': utilisateur.id}) }}">
+                                    Show
+                                </a>
+                                <a
+                                    class="btn btn-outline-success"
+                                    href="{{ path('app_utilisateur_edit', {'id': utilisateur.id}) }}">
+                                    Edit
+                                </a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="7">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+{% endblock %}

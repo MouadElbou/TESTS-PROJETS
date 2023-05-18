@@ -1,0 +1,51 @@
+{% extends 'log.html.twig' %}
+
+
+
+{% block body %}
+     <div class="container">
+        <h2 class="text-center mt-5 mb-3">Symfony Project Manager</h2>
+        <div class="card">
+            <div class="card-header">
+                <a class="btn btn-outline-primary" href="{{ path('app_categori_new') }}"> 
+                    Create New Project 
+                </a>
+            </div>
+            <div class="card-body">
+                <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nom</th>
+                <th>Description</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for categori in categoris %}
+            <tr>
+                <td>{{ categori.id }}</td>
+                <td>{{ categori.nom }}</td>
+                <td>{{ categori.Description }}</td>
+                <td>
+                     <a
+                                    class="btn btn-outline-info"
+                                    href="{{ path('app_categori_show', {'id': categori.id}) }}">
+                                    Show
+                                </a>
+                                <a
+                                    class="btn btn-outline-success"
+                                    href="{{ path('app_categori_edit', {'id': categori.id}) }}">
+                                    Edit
+                                </a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="4">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+{% endblock %}
